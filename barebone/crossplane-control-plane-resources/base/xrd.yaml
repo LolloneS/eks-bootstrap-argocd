@@ -26,6 +26,10 @@ spec:
                 aws:
                   type: object
                   properties:
+                    account_id:
+                      type: string
+                    partition:
+                      type: string
                     region: 
                       type: string
                 version:
