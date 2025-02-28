@@ -192,7 +192,7 @@ spec:
                 fmt: "%s-s3-policy"
         - type: FromCompositeFieldPath
           fromFieldPath: metadata.name
-          toFieldPath: spec.forProvider.document
+          toFieldPath: spec.forProvider.policy
           transforms:
             - type: string
               string:
