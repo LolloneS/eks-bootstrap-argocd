@@ -30,7 +30,7 @@ spec:
                       type: string
                     partition:
                       type: string
-                    region: 
+                    region:
                       type: string
                 version:
                   type: string
