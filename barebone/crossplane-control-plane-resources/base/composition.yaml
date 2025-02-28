@@ -162,3 +162,66 @@ spec:
         - type: FromCompositeFieldPath
           fromFieldPath: spec.aws.region
           toFieldPath: spec.forProvider.region
+    - name: s3-bucket-policy
+      base:
+        apiVersion: iam.aws.crossplane.io/v1beta1
+        kind: Policy
+        metadata:
+          name: replaceme
+          namespace: default
+        spec:
+          deletionPolicy: Delete
+          forProvider:
+            name: replaceme  
+            document: replaceme
+          providerConfigRef:
+            name: irsa-providerconfig
+      patches:
+        - type: FromCompositeFieldPath
+          fromFieldPath: metadata.name
+          toFieldPath: metadata.name
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-s3-bucket-policy"
+        - type: FromCompositeFieldPath
+          fromFieldPath: metadata.name
+          toFieldPath: spec.forProvider.name
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-s3-policy"
+        - type: FromCompositeFieldPath
+          fromFieldPath: metadata.name
+          toFieldPath: spec.forProvider.document
+          transforms:
+            - type: string
+              string:
+                fmt: |
+                  {
+                      "Version": "2012-10-17",
+                      "Statement": [
+                          {
+                              "Effect": "Allow",
+                              "Action": [
+                                  "s3:ListBucketMultipartUploads",
+                                  "s3:ListBucketVersions",
+                                  "s3:ListBucket",
+                                  "s3:GetBucketLocation"
+                              ],
+                              "Resource": "arn:aws:s3:::%s-s3-bucket"
+                          },
+                          {
+                              "Sid": "VisualEditor1",
+                              "Effect": "Allow",
+                              "Action": [
+                                  "s3:PutObject",
+                                  "s3:GetObject",
+                                  "s3:AbortMultipartUpload",
+                                  "s3:DeleteObject",
+                                  "s3:ListMultipartUploadParts"
+                              ],
+                              "Resource": "arn:aws:s3:::%s-s3-bucket/*"
+                          }
+                      ]
+                  }
