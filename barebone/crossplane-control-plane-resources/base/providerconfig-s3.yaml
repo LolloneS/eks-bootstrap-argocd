@@ -4,4 +4,4 @@ metadata:
   name: irsa-providerconfig
 spec:
   credentials:
-    source: PodIdentity
+    source: IRSA
