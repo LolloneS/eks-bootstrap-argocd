@@ -211,7 +211,6 @@ spec:
                               "Resource": "arn:aws:s3:::%s-s3-bucket"
                           },
                           {
-                              "Sid": "VisualEditor1",
                               "Effect": "Allow",
                               "Action": [
                                   "s3:PutObject",
