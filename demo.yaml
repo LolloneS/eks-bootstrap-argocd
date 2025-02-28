@@ -5,6 +5,8 @@ kind: ElasticStack
 metadata:
   name: test
 spec:
+  aws:
+    region: eu-north-1
   targetCluster:
     namespace: elastic-system
     name: data-plane
