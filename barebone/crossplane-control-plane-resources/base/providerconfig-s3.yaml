@@ -3,5 +3,10 @@ kind: ProviderConfig
 metadata:
   name: irsa-providerconfig
 spec:
-  credentials:
-    source: IRSA
+    source: WebIdentity
+    webIdentity:
+      roleARN: arn:aws:iam::933066587362:role/argo-cd-control-plane-lorenzo-control-plane
+      tokenConfig:
+        fs:
+          path: /var/run/secrets/pods.eks.amazonaws.com/serviceaccount/eks-pod-identity-token
+        source: Filesystem
