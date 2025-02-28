@@ -172,8 +172,7 @@ spec:
         spec:
           deletionPolicy: Delete
           forProvider:
-            name: replaceme  
-            document: replaceme
+            policy: replaceme
           providerConfigRef:
             name: irsa-providerconfig
       patches:
