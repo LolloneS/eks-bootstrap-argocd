@@ -23,6 +23,11 @@ spec:
             spec:
               type: object
               properties:
+                aws:
+                  type: object
+                  properties:
+                    region: 
+                      type: string
                 version:
                   type: string
                 elasticsearch:
@@ -43,6 +48,7 @@ spec:
                     name:
                       type: string
               required:
+                - aws
                 - version
                 - elasticsearch
                 - kibana

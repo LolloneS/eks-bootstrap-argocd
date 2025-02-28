@@ -139,3 +139,26 @@ spec:
         - type: FromCompositeFieldPath
           fromFieldPath: spec.targetCluster.name
           toFieldPath: spec.providerConfigRef.name
+    - name: s3-bucket
+      base:
+        apiVersion: s3.aws.upbound.io/v1beta1
+        kind: Bucket
+        metadata:
+          name: replaceme
+          namespace: default
+        spec:
+          forProvider:
+            region: replaceme
+          providerConfigRef:
+            name: irsa-providerconfig
+      patches:
+        - type: FromCompositeFieldPath
+          fromFieldPath: metadata.name
+          toFieldPath: metadata.name
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-s3-bucket"
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.aws.region
+          toFieldPath: spec.forProvider.region
