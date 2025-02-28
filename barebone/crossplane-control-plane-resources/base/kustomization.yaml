@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
 - awsdeploymentruntimeconfig.yaml
 - composition.yaml
+- provider-iam.yaml
 - provider-kubernetes.yaml
 - provider-s3.yaml
 - providerconfig-data-plane.yaml
